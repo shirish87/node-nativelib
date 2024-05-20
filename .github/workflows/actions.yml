@@ -18,7 +18,7 @@ jobs:
         run: npm i ffi
         if: always()
       - name: Install ffi-rs
-        run: npm i ffi-rs
+        run: npm i ffi-rs && npm ls --all
         if: always()
       - name: Install ffi-napi
         run: npm i ffi-napi
@@ -37,6 +37,7 @@ jobs:
       - uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
         with:
           ruby-version: '3.1'
+      - run: gem install ffi
       - run: ruby index.rb
         if: always()
 
