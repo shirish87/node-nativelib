@@ -1,0 +1,32 @@
+name: node-nativelib
+
+on:
+  push:
+    branches: [main]
+
+  workflow_dispatch:
+
+jobs:
+  test-nodejs:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 18
+      - name: Install ffi
+        run: npm i ffi
+        if: always()
+      - name: Install ffi-rs
+        run: npm i ffi-rs
+        if: always()
+      - name: Install ffi-napi
+        run: npm i ffi-napi
+        if: always()
+      - name: Install sffi
+        run: npm i sbffi
+        if: always()
+      - name: Test ffi
+        run: node index.js
+
+ 
