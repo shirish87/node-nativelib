@@ -29,4 +29,25 @@ jobs:
       - name: Test ffi
         run: node index.js
 
- 
+
+  test-ruby:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ruby/setup-ruby@ec02537da5712d66d4d50a0f33b7eb52773b5ed1
+        with:
+          ruby-version: '3.1'
+      - run: ruby index.rb
+        if: always()
+
+
+  test-python3:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+      - name: Display Python version
+        run: python -c "import sys; print(sys.version)"
+      - name: Run
+        run: python index.py
+        if: always()
